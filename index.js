@@ -1,4 +1,5 @@
 const pup = require("puppeteer");
+const PORT = process.env.PORT || 3000;
 async function timeout(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }

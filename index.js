@@ -5,7 +5,7 @@ async function timeout(ms) {
 
 exports.work = async (req,res)=>{
 	const url= req.query.url;
-	
+	const urlx = url+"/photos";
 	const myBrowser = await pup.launch({
 	args:['--no-sandbox',
 	]
@@ -15,7 +15,7 @@ exports.work = async (req,res)=>{
 	const context = await myBrowser1.createIncognitoBrowserContext();
 	const page = await context.newPage();
 	
-	await page.goto(url);
+	await page.goto(urlx);
 	await timeout(5000);
 	const textx = await page.evaluate(() => Array.from(document.getElementsByClassName("_125gmrun")[0].querySelectorAll("picture"), element => element.innerHTML));
 	let i;
@@ -33,9 +33,10 @@ exports.work = async (req,res)=>{
 	const konum = await page.evaluate(()=>document.getElementsByClassName("_13myk77s")[0].querySelector("a").innerText);
 	const doubledata = await page.evaluate(()=>document.getElementsByClassName("_xcsyj0")[0].innerText);
 	const ucret = await page.evaluate(()=>document.getElementsByClassName("_ymq6as")[0].querySelector("span").querySelector("span").innerText);
+	const detay = await page.evaluate(()=>document.getElementsByClassName("_tqmy57")[0].querySelectorAll("div")[1].innerText);
 	const aciklama = doubledata.substr(0,doubledata.indexOf("·")-1);
 	const sahip = doubledata.replace(aciklama+" · ","");
-	const son = '{"data": {"baslik": "'+baslik+'","aciklama": "'+aciklama+'","sahip":"'+sahip+'","konum":"'+konum+'","ucret":"'+ucret+'","resimler": '+imgs+'}}';
+	const son = '{"data": {"baslik": "'+baslik+'","aciklama": "'+aciklama+'","sahip":"'+sahip+'","konum":"'+konum+'","ucret":"'+ucret+'","detay": "'+detay+'","resimler": '+imgs+'}}';
 	res.send(son);
 	context.close();
 };

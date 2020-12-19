@@ -4,7 +4,9 @@ async function timeout(ms) {
 }
 
 exports.work = async (req,res)=>{
-	const url= req.query.url;
+	try{
+		
+		const url= req.query.url;
 	const urlx = url+"/photos";
 	const myBrowser = await pup.launch({
 	args:['--no-sandbox',
@@ -39,4 +41,8 @@ exports.work = async (req,res)=>{
 	const son = '{"data": {"baslik": "'+baslik+'","aciklama": "'+aciklama+'","sahip":"'+sahip+'","konum":"'+konum+'","ucret":"'+ucret+'","detay": "'+detay+'","resimler": '+imgs+'}}';
 	res.send(son);
 	context.close();
+		
+	}catch(e){
+		res.send("zamanasimi");
+	}
 };

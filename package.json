@@ -1,0 +1,16 @@
+{
+  "name": "airb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "functions-framework --target=work"
+  },
+  "keywords": {},
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@google-cloud/functions-framework": "1.7.1",
+    "puppeteer": "1.20.0"
+  }
+}

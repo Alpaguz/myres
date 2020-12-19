@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "functions-framework --target=work --port $PORT"
+    "start": "functions-framework --target=work"
   },
   "keywords": {},
   "author": "",
